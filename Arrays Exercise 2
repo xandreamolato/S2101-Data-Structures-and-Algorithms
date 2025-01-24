@@ -1,0 +1,27 @@
+package arrays;
+
+public class ArraysExercise2 {
+
+	public static void main(String[] args) {
+		// Declare and initialize the array with five elements
+        int[] arr = {3, 7, 12, 6, 18};
+        int valueToCheck = 6; // The value to check if it exists in the array
+
+        boolean containsValue = false; // Initialize to track if value is found
+
+        // Iterate through the array
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == valueToCheck) { // Check if the value is in the array
+                containsValue = true;
+                break; // Exit the loop if value is found
+            }
+        }
+
+        // Output the result
+        if (containsValue) {
+            System.out.println("The array contains the value " + valueToCheck);
+        } else {
+            System.out.println("The array does not contain the value " + valueToCheck);
+        }
+    }
+}
