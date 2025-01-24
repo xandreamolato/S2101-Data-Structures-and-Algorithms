@@ -1,0 +1,32 @@
+package arrays;
+
+import java.util.Scanner;
+
+public class ArraysExercise3 {
+
+	public static void main(String[] args) {
+		// Step 2: Create an array for 5 integers
+        int[] arr = new int[5];
+        Scanner input = new Scanner(System.in); // Step 3: Create Scanner for user input
+
+        // Step 4: Ask the user to fill the array
+        System.out.println("Enter five integer values to fill the array:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("Enter value #" + (i + 1) + ": ");
+            arr[i] = input.nextInt(); // Store user input in the array
+        }
+
+        // Step 5: Calculate the sum of array elements
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+
+        // Step 6: Print the sum
+        System.out.println("The sum of the array's values is: " + sum);
+
+        // Close the Scanner to fix the resource leak warning
+        input.close();
+    }
+}
+
