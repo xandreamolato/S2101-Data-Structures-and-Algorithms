@@ -1,0 +1,42 @@
+package arrays;
+
+import java.util.Scanner;
+
+public class ArraysBubbleSort {
+
+	public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+        
+        // Step 1: Input the array size
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+        
+        int[] arr = new int[n];
+
+        // Step 2: Input array elements
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Step 3: Perform Bubble Sort
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap elements if they are in the wrong order
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        // Step 4: Print sorted array
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+
+        scanner.close();
+    }
+}
