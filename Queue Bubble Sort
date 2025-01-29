@@ -1,0 +1,47 @@
+package Queue;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BubbleSortQueue {
+    public static void bubbleSort(Queue<Integer> queue) {
+        int n = queue.size();
+        Integer[] arr = new Integer[n];
+
+        // Move elements from queue to array
+        for (int i = 0; i < n; i++) {
+            arr[i] = queue.poll();
+        }
+
+        // Bubble sort on array
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        // Enqueue sorted elements back to queue
+        for (int num : arr) {
+            queue.offer(num);
+        }
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(64);
+        queue.offer(34);
+        queue.offer(25);
+        queue.offer(12);
+        queue.offer(22);
+        queue.offer(11);
+        queue.offer(90);
+
+        System.out.println("Original Queue: " + queue);
+        bubbleSort(queue);
+        System.out.println("Sorted Queue: " + queue);
+    }
+}
