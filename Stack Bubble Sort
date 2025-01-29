@@ -1,0 +1,46 @@
+package Stack;
+
+import java.util.Stack;
+
+public class StackBubbleSort {
+    public static void bubbleSort(Stack<Integer> stack) {
+        int n = stack.size();
+        Integer[] arr = new Integer[n];
+
+        // Move elements from stack to array
+        for (int i = n - 1; i >= 0; i--) {
+            arr[i] = stack.pop();
+        }
+
+        // Bubble sort on array
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        // Push sorted elements back to stack
+        for (int num : arr) {
+            stack.push(num);
+        }
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(64);
+        stack.push(34);
+        stack.push(25);
+        stack.push(12);
+        stack.push(22);
+        stack.push(11);
+        stack.push(90);
+
+        System.out.println("Original Stack: " + stack);
+        bubbleSort(stack);
+        System.out.println("Sorted Stack: " + stack);
+    }
+}
