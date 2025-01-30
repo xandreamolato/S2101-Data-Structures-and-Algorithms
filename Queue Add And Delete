@@ -1,0 +1,46 @@
+package Queue;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueAddAndDelete {
+    private Queue<Integer> queue;
+
+    public QueueAddAndDelete() {
+        queue = new LinkedList<>();
+    }
+
+    // Add element if not present
+    public void add(int value) {
+        if (!queue.contains(value)) {
+            queue.offer(value);
+        } else {
+            System.out.println(value + " already exists.");
+        }
+    }
+
+    // Delete element if present
+    public void delete(int value) {
+        if (queue.contains(value)) {
+            queue.remove(value);
+        } else {
+            System.out.println(value + " not found.");
+        }
+    }
+
+    // Display elements
+    public void display() {
+        System.out.println("Queue: " + queue);
+    }
+
+    public static void main(String[] args) {
+        QueueAddAndDelete queue = new QueueAddAndDelete();
+        queue.add(10);
+        queue.add(20);
+        queue.add(10); // Should not be added
+        queue.display();
+
+        queue.delete(20);
+        queue.display();
+    }
+}
