@@ -1,0 +1,45 @@
+package LinkedList;
+
+import java.util.LinkedList;
+
+public class LinkedListAddAndDelete {
+    private LinkedList<Integer> list;
+
+    public LinkedListAddAndDelete() {
+        list = new LinkedList<>();
+    }
+
+    // Add element if not present
+    public void add(int value) {
+        if (!list.contains(value)) {
+            list.add(value);
+        } else {
+            System.out.println(value + " already exists.");
+        }
+    }
+
+    // Delete element if present
+    public void delete(int value) {
+        if (list.contains(value)) {
+            list.remove(Integer.valueOf(value));
+        } else {
+            System.out.println(value + " not found.");
+        }
+    }
+
+    // Display elements
+    public void display() {
+        System.out.println("LinkedList: " + list);
+    }
+
+    public static void main(String[] args) {
+        LinkedListAddAndDelete linkedList = new LinkedListAddAndDelete();
+        linkedList.add(10);
+        linkedList.add(20);
+        linkedList.add(10); // Should not be added
+        linkedList.display();
+
+        linkedList.delete(20);
+        linkedList.display();
+    }
+}
