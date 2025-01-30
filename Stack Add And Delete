@@ -1,0 +1,45 @@
+package Stack;
+
+import java.util.Stack;
+
+public class StackAddAndDelete {
+    private Stack<Integer> stack;
+
+    public StackAddAndDelete() {
+        stack = new Stack<>();
+    }
+
+    // Add element if not present
+    public void add(int value) {
+        if (!stack.contains(value)) {
+            stack.push(value);
+        } else {
+            System.out.println(value + " already exists.");
+        }
+    }
+
+    // Delete element if present
+    public void delete(int value) {
+        if (stack.contains(value)) {
+            stack.remove(Integer.valueOf(value));
+        } else {
+            System.out.println(value + " not found.");
+        }
+    }
+
+    // Display elements
+    public void display() {
+        System.out.println("Stack: " + stack);
+    }
+
+    public static void main(String[] args) {
+        StackAddAndDelete stack = new StackAddAndDelete();
+        stack.add(10);
+        stack.add(20);
+        stack.add(10); // Should not be added
+        stack.display();
+
+        stack.delete(20);
+        stack.display();
+    }
+}
