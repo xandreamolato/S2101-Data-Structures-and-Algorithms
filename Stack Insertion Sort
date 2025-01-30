@@ -1,0 +1,46 @@
+package Stack;
+
+import java.util.Stack;
+
+public class StackInsertionSort {
+    public static void insertionSort(Stack<Integer> stack) {
+        int n = stack.size();
+        Integer[] arr = new Integer[n];
+
+        // Move elements from stack to array
+        for (int i = n - 1; i >= 0; i--) {
+            arr[i] = stack.pop();
+        }
+
+        // Insertion Sort on array
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+
+        // Push sorted elements back to stack
+        for (int num : arr) {
+            stack.push(num);
+        }
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(64);
+        stack.push(34);
+        stack.push(25);
+        stack.push(12);
+        stack.push(22);
+        stack.push(11);
+        stack.push(90);
+
+        System.out.println("Original Stack: " + stack);
+        insertionSort(stack);
+        System.out.println("Sorted Stack: " + stack);
+    }
+}
