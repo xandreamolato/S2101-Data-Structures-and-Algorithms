@@ -1,0 +1,47 @@
+package Queue;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueInsertionsort {
+    public static void insertionSort(Queue<Integer> queue) {
+        int n = queue.size();
+        Integer[] arr = new Integer[n];
+
+        // Move elements from queue to array
+        for (int i = 0; i < n; i++) {
+            arr[i] = queue.poll();
+        }
+
+        // Insertion Sort on array
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+
+        // Enqueue sorted elements back to queue
+        for (int num : arr) {
+            queue.offer(num);
+        }
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(64);
+        queue.offer(34);
+        queue.offer(25);
+        queue.offer(12);
+        queue.offer(22);
+        queue.offer(11);
+        queue.offer(90);
+
+        System.out.println("Original Queue: " + queue);
+        insertionSort(queue);
+        System.out.println("Sorted Queue: " + queue);
+    }
+}
