@@ -1,0 +1,39 @@
+package Trees;
+
+public class TreesSearch {
+
+    // Binary Search in Binary Search Tree (BST)
+    public static boolean binarySearch(TreeNode root, int target) {
+        if (root == null) {
+            return false; // Return false if the node is null
+        }
+        if (root.value == target) {
+            return true; // Return true if target is found
+        }
+        if (target < root.value) {
+            return binarySearch(root.left, target); // Search left subtree if target is smaller
+        } else {
+            return binarySearch(root.right, target); // Search right subtree if target is larger
+        }
+    }
+
+    public static void main(String[] args) {
+        // Constructing the tree
+        TreeNode root = new TreeNode(20);
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(30);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(15);
+        root.right.left = new TreeNode(25);
+        root.right.right = new TreeNode(35);
+
+        int target = 15;
+        boolean result = binarySearch(root, target);
+
+        if (result) {
+            System.out.println("Binary Search: Element found in the tree.");
+        } else {
+            System.out.println("Binary Search: Element not found in the tree.");
+        }
+    }
+}
