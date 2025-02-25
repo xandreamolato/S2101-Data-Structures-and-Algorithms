@@ -1,0 +1,56 @@
+package Stack;
+
+import java.util.Stack;
+
+public class StackMerge {
+    public static void main(String[] args) {
+        Stack<Integer> stack1 = new Stack<>();
+        stack1.push(5);
+        stack1.push(3);
+        stack1.push(1);
+
+        Stack<Integer> stack2 = new Stack<>();
+        stack2.push(6);
+        stack2.push(4);
+        stack2.push(2);
+
+        Stack<Integer> mergedStack = mergeStacks(stack1, stack2);
+
+        System.out.print("Merged Stack: ");
+        while (!mergedStack.isEmpty()) {
+            System.out.print(mergedStack.pop() + " ");
+        }
+    }
+
+    public static Stack<Integer> mergeStacks(Stack<Integer> stack1, Stack<Integer> stack2) {
+        Stack<Integer> reversedStack1 = reverseStack(stack1);
+        Stack<Integer> reversedStack2 = reverseStack(stack2);
+        Stack<Integer> mergedStack = new Stack<>();
+
+        while (!reversedStack1.isEmpty() && !reversedStack2.isEmpty()) {
+            if (reversedStack1.peek() < reversedStack2.peek()) {
+                mergedStack.push(reversedStack1.pop());
+            } else {
+                mergedStack.push(reversedStack2.pop());
+            }
+        }
+
+        while (!reversedStack1.isEmpty()) {
+            mergedStack.push(reversedStack1.pop());
+        }
+
+        while (!reversedStack2.isEmpty()) {
+            mergedStack.push(reversedStack2.pop());
+        }
+
+        return mergedStack;
+    }
+
+    public static Stack<Integer> reverseStack(Stack<Integer> stack) {
+        Stack<Integer> reversedStack = new Stack<>();
+        while (!stack.isEmpty()) {
+            reversedStack.push(stack.pop());
+        }
+        return reversedStack;
+    }
+}
