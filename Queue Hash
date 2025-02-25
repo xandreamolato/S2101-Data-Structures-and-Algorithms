@@ -1,0 +1,28 @@
+package Queue;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueHash {
+    public static void main(String[] args) {
+        String input = "aabccdeff";
+        HashMap<Character, Integer> freqMap = new HashMap<>();
+        Queue<Character> queue = new LinkedList<>();
+
+        for (char ch : input.toCharArray()) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+            queue.add(ch);
+        }
+
+        while (!queue.isEmpty()) {
+            char ch = queue.poll();
+            if (freqMap.get(ch) == 1) {
+                System.out.println("First non-repeating character: " + ch);
+                return;
+            }
+        }
+
+        System.out.println("No non-repeating character found.");
+    }
+}
