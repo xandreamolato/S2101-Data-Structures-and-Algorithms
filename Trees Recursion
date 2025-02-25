@@ -1,0 +1,38 @@
+package Trees;
+
+public class TreesRecursion {
+
+    // TreeNode class
+    static class TreeNode {
+        int value;
+        TreeNode left, right;
+
+        TreeNode(int value) {
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    // Inorder Traversal using Recursion
+    public static void inorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorderTraversal(root.left);  // Visit left subtree
+        System.out.print(root.value + " "); // Visit node
+        inorderTraversal(root.right); // Visit right subtree
+    }
+
+    public static void main(String[] args) {
+        // Constructing the tree
+        TreeNode root = new TreeNode(20);
+        root.left = new TreeNode(10);
+        root.right = new TreeNode(30);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(15);
+
+        System.out.println("Inorder Traversal:");
+        inorderTraversal(root);
+    }
+}
