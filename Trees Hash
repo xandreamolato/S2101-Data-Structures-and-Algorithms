@@ -1,0 +1,81 @@
+package Trees;
+
+import java.util.HashMap;
+
+public class TreesHash {
+    // Inner TreeNode class
+    private static class TreeNode {
+        char key;
+        TreeNode left, right;
+
+        public TreeNode(char item) {
+            key = item;
+            left = right = null;
+        }
+    }
+
+    private TreeNode root;
+    private HashMap<Character, Integer> freqMap;
+
+    // Constructor
+    public TreesHash() {
+        root = null;
+        freqMap = new HashMap<>();
+    }
+
+    // Insert method
+    private void insert(char key) {
+        root = insertRec(root, key);
+    }
+
+    // Recursive insert for Binary Search Tree
+    private TreeNode insertRec(TreeNode root, char key) {
+        if (root == null) {
+            root = new TreeNode(key);
+            return root;
+        }
+        // Use Character.compare for comparing characters
+        if (Character.compare(key, root.key) < 0) {
+            root.left = insertRec(root.left, key);
+        } else if (Character.compare(key, root.key) > 0) {
+            root.right = insertRec(root.right, key);
+        }
+        return root;
+    }
+
+    // Inorder traversal for testing
+    private void inorder(TreeNode root) {
+        if (root != null) {
+            inorder(root.left);
+            System.out.print(root.key + " ");
+            inorder(root.right);
+        }
+    }
+
+    // Finding the first non-repeating character
+    public void findFirstNonRepeating(String input) {
+        for (char ch : input.toCharArray()) {
+            insert(ch);
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+        }
+
+        // Inorder traversal to check the tree structure
+        System.out.print("Inorder Traversal of Tree: ");
+        inorder(root);
+
+        // Finding the first non-repeating character
+        for (char ch : input.toCharArray()) {
+            if (freqMap.get(ch) == 1) {
+                System.out.println("\nFirst non-repeating character: " + ch);
+                return;
+            }
+        }
+        System.out.println("\nNo non-repeating character found.");
+    }
+
+    public static void main(String[] args) {
+        TreesHash tree = new TreesHash();
+        String input = "aabccdeff";
+        tree.findFirstNonRepeating(input);
+    }
+}
