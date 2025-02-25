@@ -1,0 +1,59 @@
+package arrays;
+
+public class ArraysSearch {
+
+    // Linear Search Method
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i; // Return index if target is found
+            }
+        }
+        return -1; // Return -1 if target is not found
+    }
+
+    // Binary Search Method (Requires sorted array)
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Check if target is present at mid
+            if (arr[mid] == target) {
+                return mid;
+            }
+            // If target is greater, ignore left half
+            if (arr[mid] < target) {
+                left = mid + 1;
+            }
+            // If target is smaller, ignore right half
+            else {
+                right = mid - 1;
+            }
+        }
+        return -1; // Return -1 if target is not found
+    }
+
+    public static void main(String[] args) {
+        int[] array = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+        int target = 10;
+
+        // Linear Search
+        int linearResult = linearSearch(array, target);
+        if (linearResult != -1) {
+            System.out.println("Linear Search: Element found at index " + linearResult);
+        } else {
+            System.out.println("Linear Search: Element not found.");
+        }
+
+        // Binary Search (Array must be sorted)
+        int binaryResult = binarySearch(array, target);
+        if (binaryResult != -1) {
+            System.out.println("Binary Search: Element found at index " + binaryResult);
+        } else {
+            System.out.println("Binary Search: Element not found.");
+        }
+    }
+}
