@@ -1,0 +1,48 @@
+package Queue;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueMerge {
+    public static void main(String[] args) {
+        Queue<Integer> queue1 = new LinkedList<>();
+        queue1.add(1);
+        queue1.add(3);
+        queue1.add(5);
+
+        Queue<Integer> queue2 = new LinkedList<>();
+        queue2.add(2);
+        queue2.add(4);
+        queue2.add(6);
+
+        Queue<Integer> mergedQueue = mergeQueues(queue1, queue2);
+
+        System.out.print("Merged Queue: ");
+        while (!mergedQueue.isEmpty()) {
+            System.out.print(mergedQueue.poll() + " ");
+        }
+    }
+
+    public static Queue<Integer> mergeQueues(Queue<Integer> queue1, Queue<Integer> queue2) {
+        Queue<Integer> mergedQueue = new LinkedList<>();
+
+        while (!queue1.isEmpty() && !queue2.isEmpty()) {
+            if (queue1.peek() < queue2.peek()) {
+                mergedQueue.add(queue1.poll());
+            } else {
+                mergedQueue.add(queue2.poll());
+            }
+        }
+
+        // Add remaining elements
+        while (!queue1.isEmpty()) {
+            mergedQueue.add(queue1.poll());
+        }
+
+        while (!queue2.isEmpty()) {
+            mergedQueue.add(queue2.poll());
+        }
+
+        return mergedQueue;
+    }
+}
