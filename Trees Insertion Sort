@@ -1,0 +1,63 @@
+package Trees;
+
+public class TreesSortAndInsert {
+
+    // Define the TreeNode class
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        // Constructor to create a new tree node
+        TreeNode(int value) {
+            val = value;
+            left = right = null;
+        }
+    }
+
+    // Function to insert a new node in the Binary Search Tree
+    public static TreeNode insert(TreeNode root, int value) {
+        // If the tree is empty, create the root node
+        if (root == null) {
+            return new TreeNode(value);
+        }
+
+        // Recursively insert the value in the left or right subtree
+        if (value < root.val) {
+            root.left = insert(root.left, value);
+        } else if (value > root.val) {
+            root.right = insert(root.right, value);
+        }
+
+        // Return the unchanged root node
+        return root;
+    }
+
+    // Function to perform In-Order Traversal and sort the tree
+    public static void inOrderTraversal(TreeNode root) {
+        if (root != null) {
+            // Traverse the left subtree
+            inOrderTraversal(root.left);
+
+            // Visit the node
+            System.out.print(root.val + " ");
+
+            // Traverse the right subtree
+            inOrderTraversal(root.right);
+        }
+    }
+
+    // Main method to test insertion and sorting
+    public static void main(String[] args) {
+        TreeNode root = null;
+
+        // Inserting nodes into the Binary Search Tree
+        int[] values = {50, 30, 20, 40, 70, 60, 80};
+        for (int value : values) {
+            root = insert(root, value);
+        }
+
+        // Performing in-order traversal to print sorted values
+        System.out.print("In-order Traversal (Sorted): ");
+        inOrderTraversal(root);
+    }
+}
