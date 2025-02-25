@@ -1,0 +1,34 @@
+import java.util.LinkedList;
+
+public class LinkedListHash {
+    private LinkedList<String>[] hashTable;
+    private int size;
+
+    public LinkedListHash(int size) {
+        this.size = size;
+        hashTable = new LinkedList[size];
+        for (int i = 0; i < size; i++) {
+            hashTable[i] = new LinkedList<>();
+        }
+    }
+
+    public void insert(String key) {
+        int index = Integer.parseInt(key) % size;
+        hashTable[index].add(key);
+    }
+
+    public void display() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(i + " --> " + hashTable[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedListHash linkedListHash = new LinkedListHash(10);
+        linkedListHash.insert("15");
+        linkedListHash.insert("25");
+        linkedListHash.insert("35");
+        linkedListHash.display();
+    }
+}
+}
