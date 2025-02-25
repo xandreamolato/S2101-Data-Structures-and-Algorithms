@@ -1,1 +1,47 @@
+package Trees;
 
+public class TreesExercise {
+
+    // Define the TreeNode class
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        // Constructor to create a new tree node
+        TreeNode(int value) {
+            val = value;
+            left = right = null;
+        }
+    }
+
+    // Function to count the number of nodes in the binary tree
+    public static int countNodes(TreeNode node) {
+        // If the node is null, return 0
+        if (node == null) {
+            return 0;
+        }
+
+        // Recursively count the nodes in the left and right subtrees
+        int leftCount = countNodes(node.left);
+        int rightCount = countNodes(node.right);
+
+        // Return the total count (1 for the current node + left + right)
+        return 1 + leftCount + rightCount;
+    }
+
+    // Main method to test the function
+    public static void main(String[] args) {
+        // Creating the binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        // Counting and printing the number of nodes
+        int totalNodes = countNodes(root);
+        System.out.println("Total number of nodes in the tree: " + totalNodes);
+    }
+}
