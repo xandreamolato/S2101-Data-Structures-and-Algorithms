@@ -1,0 +1,27 @@
+package Stack;
+
+import java.util.HashMap;
+import java.util.Stack;
+
+public class StackHash {
+    public static void main(String[] args) {
+        String input = "aabccdeff";
+        HashMap<Character, Integer> freqMap = new HashMap<>();
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : input.toCharArray()) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+            stack.push(ch);
+        }
+
+        while (!stack.isEmpty()) {
+            char ch = stack.pop();
+            if (freqMap.get(ch) == 1) {
+                System.out.println("First non-repeating character: " + ch);
+                return;
+            }
+        }
+
+        System.out.println("No non-repeating character found.");
+    }
+}
