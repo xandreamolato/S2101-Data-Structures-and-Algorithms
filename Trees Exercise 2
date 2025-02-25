@@ -1,1 +1,72 @@
+package Trees;
 
+public class TreesExercise2 {
+
+    // Define the TreeNode class
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        // Constructor to create a new tree node
+        TreeNode(int value) {
+            val = value;
+            left = right = null;
+        }
+    }
+
+    // Function to check if the tree is balanced
+    public static boolean isBalanced(TreeNode node) {
+        // If the node is null, the tree is balanced
+        if (node == null) {
+            return true;
+        }
+
+        // Get the height of left and right subtrees
+        int leftHeight = getHeight(node.left);
+        int rightHeight = getHeight(node.right);
+
+        // Check if the difference in height is more than 1
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return false;
+        }
+
+        // Recursively check if the left and right subtrees are balanced
+        return isBalanced(node.left) && isBalanced(node.right);
+    }
+
+    // Function to get the height of the tree
+    public static int getHeight(TreeNode node) {
+        // If the node is null, height is 0
+        if (node == null) {
+            return 0;
+        }
+
+        // Return the height of the tree (1 + max of left or right subtree)
+        return 1 + Math.max(getHeight(node.left), getHeight(node.right));
+    }
+
+    // Main method to test the function
+    public static void main(String[] args) {
+        // Creating a balanced binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+
+        // Checking and printing if the tree is balanced
+        boolean balanced = isBalanced(root);
+        System.out.println("Is the tree balanced? " + balanced);
+
+        // Creating an unbalanced binary tree
+        TreeNode root2 = new TreeNode(1);
+        root2.left = new TreeNode(2);
+        root2.left.left = new TreeNode(3);
+
+        // Checking and printing if the second tree is balanced
+        boolean balanced2 = isBalanced(root2);
+        System.out.println("Is the second tree balanced? " + balanced2);
+    }
+}
