@@ -1,0 +1,36 @@
+package arrays;
+
+import java.util.Arrays;
+
+public class ArraysHash {
+    private String[] hashTable;
+    private int size;
+
+    public ArraysHash(int size) {
+        this.size = size;
+        hashTable = new String[size];
+        Arrays.fill(hashTable, "-1");
+    }
+
+    public void insert(String key) {
+        int index = Integer.parseInt(key) % size;
+
+        // Linear probing in case of collision
+        while (hashTable[index] != "-1") {
+            index = (index + 1) % size;
+        }
+        hashTable[index] = key;
+    }
+
+    public void display() {
+        System.out.println(Arrays.toString(hashTable));
+    }
+
+    public static void main(String[] args) {
+        ArraysHash arrayHash = new ArraysHash(10);
+        arrayHash.insert("15");
+        arrayHash.insert("25");
+        arrayHash.insert("35");
+        arrayHash.display();
+    }
+}
