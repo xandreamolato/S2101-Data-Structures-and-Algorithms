@@ -1,0 +1,40 @@
+package Stack;
+
+import java.util.Stack;
+
+public class StackRecursion {
+
+    // Recursive method to sort the stack
+    public static void sortStack(Stack<Integer> stack) {
+        if (!stack.isEmpty()) {
+            int temp = stack.pop();
+            sortStack(stack);
+            insertSorted(stack, temp);
+        }
+    }
+
+    // Helper method to insert an element in sorted order
+    private static void insertSorted(Stack<Integer> stack, int value) {
+        if (stack.isEmpty() || value > stack.peek()) {
+            stack.push(value);
+        } else {
+            int temp = stack.pop();
+            insertSorted(stack, value);
+            stack.push(temp);
+        }
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(3);
+        stack.push(1);
+        stack.push(4);
+        stack.push(2);
+
+        System.out.println("Original Stack: " + stack);
+
+        sortStack(stack);
+
+        System.out.println("Sorted Stack: " + stack);
+    }
+}
